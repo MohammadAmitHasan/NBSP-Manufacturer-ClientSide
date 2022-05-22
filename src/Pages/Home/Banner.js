@@ -11,7 +11,7 @@ const Banner = () => {
                 opacity: 0.08,
             }}>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-gray-700 p-5 absolute -mt-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-gray-700 p-5  lg:-mt-20">
                 <div className='flex justify-center items-center'>
                     <div>
                         <img src={banner} alt='Cycle parts' className='w-full rounded-2xl' />
