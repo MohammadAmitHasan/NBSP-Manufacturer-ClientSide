@@ -1,14 +1,12 @@
-import { useQuery } from "react-query";
-import Loading from '../Pages/Shared/Loading'
+import { useEffect, useState } from "react";
 
-const useParts = () => {
-    const { data: parts, isLoading } = useQuery('parts', () =>
-        fetch(`http://localhost:5000/parts`)
-            .then(res => res.json()))
-
-    if (isLoading) {
-        return <Loading></Loading>
-    }
-    return (parts)
+const useParts = (size) => {
+    const [parts, setParts] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/parts?size=${size}`)
+            .then(res => res.json())
+            .then(data => setParts(data))
+    }, [size])
+    return parts
 }
 export default useParts;
