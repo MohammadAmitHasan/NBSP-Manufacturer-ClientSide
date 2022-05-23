@@ -12,7 +12,7 @@ const Welcome = () => {
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
                 <div className='lg:col-span-2'>
                     <h3 className='text-3xl text-secondary'>WE AIM TO PROVIDE YOU THE BEST QUALITY PRODUCTS</h3>
-                    <p className='mt-3 leading-7 text-gray-200 text-justify'>
+                    <p className='mt-3 leading-7 text-gray-200'>
                         At NBSP, we are the leading Bicycle Parts manufacturers and traders of quality bicycles Since - 1994. Exports bicycle parts, motorcycle parts and other items worldwide. We take pride in our excellence in service and manufacturing, guaranteeing you complete satisfaction while building strong and long lasting relationships with you as a valuable consumer. Sovereign specialized in manufacturing, supplying and exporting Bicycle parts, Accessories. Worldwide presence in Brazil, Mexico, Argentina and in Italy, Poland Countries like India, Bangladesh and Sri Lanka. .
                     </p>
                 </div>
