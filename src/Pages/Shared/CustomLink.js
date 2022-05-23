@@ -10,7 +10,7 @@ function CustomLink({ children, to, ...props }) {
     return (
         <div className=' mb-3 md:mb-0'>
             <Link
-                className='font-semibold decoration-none mx-3 py-2 px-2 rounded-sm text-lg hover:bg-sky-100 border-b-2 border-white hover:border-[#ff2e70]'
+                className='btn btn-ghost'
                 style={activeStyle}
                 to={to}
                 {...props}
