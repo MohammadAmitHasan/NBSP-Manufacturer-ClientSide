@@ -1,12 +1,15 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import contact from '../../Images/contactUs.jpg'
 
 const ContactUs = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
     const onSubmit = async data => {
         console.log(data)
+        reset();
+        toast('We will contact you through your email');
     }
 
     return (
@@ -65,7 +68,19 @@ const ContactUs = () => {
                                         {errors.email.message}
                                     </p>}
                             </div>
-                            <textarea name="" placeholder='Write your comment please' className="textarea textarea-bordered w-full max-w-xs" cols="30" rows="5"></textarea>
+                            <div>
+                                <textarea placeholder='Write your comment please' className="textarea textarea-bordered w-full max-w-xs" cols="30" rows="5"
+                                    {...register("comment", {
+                                        required: {
+                                            value: true,
+                                            message: 'Please Comment'
+                                        }
+                                    })} />
+                                {errors.email?.type === 'required' &&
+                                    <p className='text-red-500 mt-1 rounded-lg'>
+                                        {errors.comment.message}
+                                    </p>}
+                            </div>
 
                             <input className='btn w-full rounded-full bg-neutral' type="submit" value='Send to Us' />
                         </div>
