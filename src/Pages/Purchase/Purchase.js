@@ -72,10 +72,26 @@ const Purchase = () => {
                                         required: {
                                             value: true,
                                             message: 'Order Quantity Required'
+                                        },
+                                        max: {
+                                            value: data.availableQuantity,
+                                            message: `You can order maximum ${data.availableQuantity} pieces`,
+                                        },
+                                        min: {
+                                            value: data.minimumOrder,
+                                            message: `You have to order minimum ${data.minimumOrder} pieces`
                                         }
                                     })}
                                 />
                                 {errors.quantity?.type === 'required' &&
+                                    <p className='text-red-500 mt-1 rounded-lg'>
+                                        {errors.quantity.message}
+                                    </p>}
+                                {errors.quantity?.type === 'max' &&
+                                    <p className='text-red-500 mt-1 rounded-lg'>
+                                        {errors.quantity.message}
+                                    </p>}
+                                {errors.quantity?.type === 'min' &&
                                     <p className='text-red-500 mt-1 rounded-lg'>
                                         {errors.quantity.message}
                                     </p>}
