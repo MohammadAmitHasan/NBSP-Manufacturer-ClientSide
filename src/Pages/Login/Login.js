@@ -7,6 +7,7 @@ import auth from '../../firebase.init'
 import Loading from '../Shared/Loading';
 import googleLogo from '../../Images/Icons/google-logo.png'
 import gitLogo from '../../Images/Icons/github--v1.png'
+import useToken from '../../Hooks/useToken';
 
 const Login = () => {
     const [isRegistration, setIsRegistration] = useState(false);
@@ -46,12 +47,13 @@ const Login = () => {
     const navigate = useNavigate();
     const from = location?.state?.from?.pathname || '/';
 
+    const [token] = useToken(user || rUser || gUser || gitUser);
 
     useEffect(() => {
-        if (user || rUser || gUser || gitUser) {
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [user, rUser, gUser, gitUser, from, navigate])
+    }, [token, from, navigate])
 
     let loginError;
     if (error || gError || updateError || rError || gitError) {
