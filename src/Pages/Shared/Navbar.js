@@ -28,8 +28,8 @@ const Navbar = () => {
                 {
                     user ?
                         <>
-                            <CustomLink to={''}>Dashboard</CustomLink>
-                            <button onClick={() => signOut(auth)} className='font-semibold mx-3 px-2 rounded-md text-lg border-b-2 border-[#ff347400] hover:border-red-500'>Logout</button>
+                            <CustomLink to={'/'}>Dashboard</CustomLink>
+                            <CustomLink to={'/login'} onClick={() => signOut(auth)} >Logout</CustomLink>
                         </>
                         :
                         <CustomLink to={'/login'}>Login</CustomLink>

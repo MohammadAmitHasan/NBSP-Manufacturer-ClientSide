@@ -1,17 +1,22 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import axiosPrivate from '../../API/axiosPrivate';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Purchase = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const { id } = useParams();
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
-    const { data = [], isLoading } = useQuery(['part', id], () =>
+    const { data: part, isLoading } = useQuery(['part', id], () =>
         fetch(`http://localhost:5000/parts/${id}`)
             .then(res => res.json())
     )
@@ -21,13 +26,31 @@ const Purchase = () => {
         return <Loading></Loading>
     }
 
-    const onSubmit = async data => {
+    const onSubmit = data => {
         const booking = {
             email: user.email,
             name: user.displayName,
             phone: data.phone,
-            address: data.address
+            address: data.address,
+            quantity: data.quantity,
+            productName: part.name,
+            productId: part._id,
         }
+
+        axiosPrivate.post('http://localhost:5000/booking', booking)
+            .then(res => {
+                if (res.data?.result?.insertedId) {
+                    toast.success('Product Booking Successful');
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                if (error.response.status === 401 || error.response.status === 403) {
+                    toast.error('Unauthorize/Forbidden Access');
+                    signOut(auth);
+                    navigate('/login')
+                }
+            })
 
         reset();
     }
@@ -43,14 +66,14 @@ const Purchase = () => {
                     <div className='rounded-xl shadow-xl relative border-2 border-gray-200 max-w-sm'>
                         <div className='p-3'>
                             <div className='overflow-hidden bg-gray-100 rounded-lg'>
-                                <img className='hover:scale-110 ease-linear duration-300' src={data.img} alt="part" />
+                                <img className='hover:scale-110 ease-linear duration-300' src={part.img} alt="part" />
                             </div>
                             <div>
-                                <h3 className='text-xl mb-2 font-semibold text-secondary mt-3'>{data.name}</h3>
-                                <p><span className='font-semibold'>Description:</span> {data.description}</p>
-                                <p className='mt-1'><span className='font-semibold'>Available Stock:</span> {data.availableQuantity} Pieces</p>
-                                <p className='mt-1'><span className='font-semibold'>Minimum Order Quantity:</span> {data.minimumOrder} Pieces</p>
-                                <p className='mt-1 text-lg font-semibold'>Price Per Unit: <span className='text-orange-600'>{data.price} tk</span></p>
+                                <h3 className='text-xl mb-2 font-semibold text-secondary mt-3'>{part.name}</h3>
+                                <p><span className='font-semibold'>Description:</span> {part.description}</p>
+                                <p className='mt-1'><span className='font-semibold'>Available Stock:</span> {part.availableQuantity} Pieces</p>
+                                <p className='mt-1'><span className='font-semibold'>Minimum Order Quantity:</span> {part.minimumOrder} Pieces</p>
+                                <p className='mt-1 text-lg font-semibold'>Price Per Unit: <span className='text-orange-600'>{part.price} tk</span></p>
                             </div>
                         </div>
                     </div>
@@ -67,19 +90,19 @@ const Purchase = () => {
                                 <label className="label">
                                     <span className="label-text">Order Quantity</span>
                                 </label>
-                                <input type="text" placeholder="Order Quantity" defaultValue={data.minimumOrder} className="input input-bordered w-full"
+                                <input type="number" placeholder="Order Quantity" defaultValue={part.minimumOrder} className="input input-bordered w-full"
                                     {...register("quantity", {
                                         required: {
                                             value: true,
                                             message: 'Order Quantity Required'
                                         },
                                         max: {
-                                            value: data.availableQuantity,
-                                            message: `You can order maximum ${data.availableQuantity} pieces`,
+                                            value: part.availableQuantity,
+                                            message: `You can order maximum ${part.availableQuantity} pieces`,
                                         },
                                         min: {
-                                            value: data.minimumOrder,
-                                            message: `You have to order minimum ${data.minimumOrder} pieces`
+                                            value: part.minimumOrder,
+                                            message: `You have to order minimum ${part.minimumOrder} pieces`
                                         }
                                     })}
                                 />
