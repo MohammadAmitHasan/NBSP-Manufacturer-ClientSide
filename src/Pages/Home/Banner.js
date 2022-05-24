@@ -11,7 +11,7 @@ const Banner = () => {
                 opacity: 0.08,
             }}>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 text-gray-700 p-5  lg:-mt-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 text-gray-700 p-5  lg:-mt-20 absolute">
                 <div className='flex justify-center items-center'>
                     <div>
                         <img src={banner} alt='Cycle parts' className='w-full rounded-2xl' />
@@ -24,7 +24,7 @@ const Banner = () => {
                         <h3 className='text-2xl md:text-3xl font-semibold'><span className='text-secondary'>UNBEATABLE</span> Price</h3>
                         <div className='w-full h-1 bg-gradient-to-r from-secondary via-primary to-secondary my-5'> </div>
                         <p className='text-xl my-4'>No Sacrifices in quality, Simply the best pricing</p>
-                        <button className="btn btn-primary">Get Started</button>
+                        <button className='btn btn-primary'>Get Started</button>
                     </div>
                 </div>
             </div>
