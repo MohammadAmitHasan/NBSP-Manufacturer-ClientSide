@@ -4,6 +4,7 @@ import world from '../../Images/Icons/icons8-europe-96.png'
 import share from '../../Images/Icons/icons8-revenue-64.png'
 import customer from '../../Images/Icons/icons8-people-80.png'
 import growth from '../../Images/Icons/icons8-growth-64.png'
+import { HashLink } from 'react-router-hash-link';
 
 const BSummary = () => {
 
@@ -76,7 +77,9 @@ const BSummary = () => {
                 <p>
                     Want to know more.? Just Contact us...
                 </p>
-                <button className='btn btn-primary mt-5'>Contact Us</button>
+
+                <HashLink to={'/#contact-us'} className='btn btn-primary mt-5'>Contact Us</HashLink>
+
             </div>
         </div>
     );

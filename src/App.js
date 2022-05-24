@@ -6,6 +6,8 @@ import Navbar from './Pages/Shared/Navbar';
 import Home from './Pages/Home/Home';
 import Blogs from './Pages/Blogs/Blogs';
 import Login from './Pages/Login/Login';
+import RequireAuth from './Pages/Shared/RequireAuth';
+import Purchase from './Pages/Purchase/Purchase';
 
 function App() {
   return (
@@ -17,6 +19,13 @@ function App() {
           <Route path='/home' element={<Home></Home>}></Route>
           <Route path='/blogs' element={<Blogs></Blogs>}></Route>
           <Route path='/login' element={<Login></Login>}></Route>
+
+          <Route path='/purchase/:id' element={
+            <RequireAuth>
+              <Purchase></Purchase>
+            </RequireAuth>}
+          ></Route>
+
         </Routes>
       </div>
       <ToastContainer />
