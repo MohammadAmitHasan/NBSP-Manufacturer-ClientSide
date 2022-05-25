@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import bg from '../../Images/BicycleParts.jpg'
 import banner from '../../Images/Parts.png'
 
@@ -24,7 +25,8 @@ const Banner = () => {
                         <h3 className='text-2xl md:text-3xl font-semibold'><span className='text-secondary'>UNBEATABLE</span> Price</h3>
                         <div className='w-full h-1 bg-gradient-to-r from-secondary via-primary to-secondary my-5'> </div>
                         <p className='text-xl my-4'>No Sacrifices in quality, Simply the best pricing</p>
-                        <button className='btn btn-primary'>Get Started</button>
+
+                        <Link className='btn btn-primary' to='/allParts'>Get Started</Link>
                     </div>
                 </div>
             </div>

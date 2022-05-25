@@ -1,10 +1,10 @@
 import React from 'react';
-import useParts from '../../Hooks/useParts';
-import LineStyle from '../Shared/LineStyle';
-import Part from '../Shared/Part';
+import useParts from '../Hooks/useParts';
+import LineStyle from './Shared/LineStyle';
+import Part from './Shared/Part';
 
-const Parts = () => {
-    const partsData = useParts(6);
+const AllParts = () => {
+    const partsData = useParts();
 
     return (
         <div className='my-20 container mx-auto p-3'>
@@ -22,4 +22,4 @@ const Parts = () => {
     );
 };
 
-export default Parts;
+export default AllParts;

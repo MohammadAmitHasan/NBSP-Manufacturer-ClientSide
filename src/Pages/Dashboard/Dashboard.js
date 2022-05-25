@@ -10,11 +10,9 @@ const Dashboard = ({ cancelOrder, setCancelOrder }) => {
     const [user, loading] = useAuthState(auth);
     const [admin, adminLoading] = useAdmin(user);
 
-
     if (adminLoading || loading) {
         return <Loading></Loading>
     }
-    console.log(admin);
 
     return (
         <div>

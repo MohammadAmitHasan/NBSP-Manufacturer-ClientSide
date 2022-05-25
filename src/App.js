@@ -14,6 +14,7 @@ import AddReview from './Pages/Dashboard/AddReview';
 import Payment from './Pages/Dashboard/payment';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import { useState } from 'react';
+import AllParts from './Pages/AllParts';
 
 function App() {
   const [cancelOrder, setCancelOrder] = useState(null);
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home></Home>}></Route>
           <Route path='/home' element={<Home></Home>}></Route>
+          <Route path='/allParts' element={<AllParts></AllParts>}></Route>
           <Route path='/blogs' element={<Blogs></Blogs>}></Route>
           <Route path='/login' element={<Login></Login>}></Route>
 
