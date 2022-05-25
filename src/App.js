@@ -9,6 +9,8 @@ import Login from './Pages/Login/Login';
 import RequireAuth from './Pages/Shared/RequireAuth';
 import Purchase from './Pages/Purchase/Purchase';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import MyOrders from './Pages/Dashboard/MyOrders';
+import AddReview from './Pages/Dashboard/AddReview';
 
 function App() {
   return (
@@ -27,11 +29,10 @@ function App() {
             </RequireAuth>}
           ></Route>
 
-          <Route path='/dashboard' element={
-            <RequireAuth>
-              <Dashboard></Dashboard>
-            </RequireAuth>
-          }></Route>
+          <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
+            <Route index element={<MyOrders></MyOrders>}></Route>
+            <Route path='addReview' element={<AddReview></AddReview>}></Route>
+          </Route>
 
         </Routes>
       </div>
