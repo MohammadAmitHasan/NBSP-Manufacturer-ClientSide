@@ -16,7 +16,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <h1 className='text-3xl md:text-4xl text-secondary text-center font-semibold'>Dashboard</h1>
+            <h1 className='text-3xl md:text-4xl text-primary text-center font-semibold'>Dashboard</h1>
 
             <div class="drawer drawer-mobile">
                 <input id="dashboard-menu" type="checkbox" class="drawer-toggle" />
@@ -32,7 +32,7 @@ const Dashboard = () => {
                     <label for="dashboard-menu" class="drawer-overlay"></label>
                     <ul class="menu p-4 overflow-y-auto w-52 border-r-2 text-base-content bg-base-100">
                         {/* <!-- Sidebar content here --> */}
-
+                        <li><Link to={'/dashboard'}>My Profile</Link></li>
                         {
                             admin ?
                                 <>
@@ -43,11 +43,10 @@ const Dashboard = () => {
                                 </>
                                 :
                                 <>
-                                    <li><Link to={'/dashboard'}>My Orders</Link></li>
+                                    <li><Link to={'/dashboard/myOrders'}>My Orders</Link></li>
                                     <li><Link to={'/dashboard/addReview'}>Add A Review</Link></li>
                                 </>
                         }
-                        <li><Link to={'/dashboard/profile'}>My Profile</Link></li>
                     </ul>
 
                 </div>

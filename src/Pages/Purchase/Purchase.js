@@ -1,26 +1,25 @@
-import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axiosPrivate from '../../API/axiosPrivate';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
-import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import useError from '../../Hooks/useError';
 
 const Purchase = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const { id } = useParams();
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
-
     const { data: part, isLoading } = useQuery(['part', id], () =>
         fetch(`http://localhost:5000/parts/${id}`)
             .then(res => res.json())
     )
 
+    const handleError = useError();
 
     if (isLoading) {
         return <Loading></Loading>
@@ -41,15 +40,11 @@ const Purchase = () => {
             .then(res => {
                 if (res.data?.result?.insertedId) {
                     toast.success('Product Booking Successful');
+                    navigate('/dashboard/myOrders')
                 }
             })
             .catch(error => {
-                console.log(error);
-                if (error.response.status === 401 || error.response.status === 403) {
-                    toast.error('Unauthorize/Forbidden Access');
-                    signOut(auth);
-                    navigate('/login')
-                }
+                handleError(error);
             })
 
         reset();
@@ -90,7 +85,7 @@ const Purchase = () => {
                                 <label className="label">
                                     <span className="label-text">Order Quantity</span>
                                 </label>
-                                <input type="number" placeholder="Order Quantity" defaultValue={part.minimumOrder} className="input input-bordered w-full"
+                                <input type="number" autoComplete='off' placeholder="Order Quantity" defaultValue={part.minimumOrder} className="input input-bordered w-full"
                                     {...register("quantity", {
                                         required: {
                                             value: true,

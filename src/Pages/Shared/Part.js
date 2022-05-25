@@ -14,7 +14,7 @@ const Part = ({ part }) => {
                     <p><span className='font-semibold'>Description:</span> {description}</p>
                     <p className='mt-1'><span className='font-semibold'>Available Stock:</span> {availableQuantity} Pieces</p>
                     <p className='mt-1'><span className='font-semibold'>Minimum Order Quantity:</span> {minimumOrder} Pieces</p>
-                    <p className='mt-1 text-lg font-semibold'>Price Per Unit: <span className='text-orange-600'>{price} tk</span></p>
+                    <p className='mt-1 text-lg font-semibold'>Price Per Unit: <span className='text-orange-600'> ${price}</span></p>
                 </div>
             </div>
             <div className='absolute bottom-0 w-full text-center pb-5'>

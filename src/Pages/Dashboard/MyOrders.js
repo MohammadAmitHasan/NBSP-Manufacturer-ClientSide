@@ -1,28 +1,23 @@
-import { signOut } from 'firebase/auth';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import axiosPrivate from '../../API/axiosPrivate';
 import auth from '../../firebase.init';
+import useError from '../../Hooks/useError';
 import Loading from '../Shared/Loading';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
-    const navigate = useNavigate();
+
+    const handleError = useError();
+
     const { data: orders, isLoading } = useQuery('myOrder', async () => {
         try {
             return await axiosPrivate.get(`http://localhost:5000/myOrders?client=${user.email}`)
         }
         catch (error) {
-            console.log(error.message);
-            if (error.response.status === 401 || error.response.status === 403) {
-                signOut(auth);
-                navigate('/login')
-                toast('Please, Login again')
-            }
+            handleError(error);
         }
     })
 
@@ -58,6 +53,10 @@ const MyOrders = () => {
                                     <td>{order.totalPrice}</td>
                                     <td>
                                         {(!order.paid) && <Link className='btn btn-xs btn-secondary text-white' to={`/dashboard/payment/${order._id}`}>Pay Now</Link>}
+                                        {(order.paid) && <div className='font-semibold'>
+                                            <p><span className='text-green-600'>Paid</span></p>
+                                            <p>Transaction id: <span className='text-orange-500'>{order.transactionId}</span></p>
+                                        </div>}
                                     </td>
                                     <td>{order?.status}</td>
                                 </tr>)
