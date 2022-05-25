@@ -28,7 +28,7 @@ const Navbar = () => {
                 {
                     user ?
                         <>
-                            <CustomLink to={'/'}>Dashboard</CustomLink>
+                            <CustomLink to={'/dashboard'}>Dashboard</CustomLink>
                             <CustomLink to={'/login'} onClick={() => signOut(auth)} >Logout</CustomLink>
                         </>
                         :
