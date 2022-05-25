@@ -4,10 +4,12 @@ import { Link, Outlet } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useAdmin from '../../Hooks/useAdmin';
 import Loading from '../Shared/Loading';
+import ConfirmationModal from './CancelOrderModal'
 
-const Dashboard = () => {
+const Dashboard = ({ cancelOrder, setCancelOrder }) => {
     const [user, loading] = useAuthState(auth);
     const [admin, adminLoading] = useAdmin(user);
+
 
     if (adminLoading || loading) {
         return <Loading></Loading>
@@ -16,6 +18,11 @@ const Dashboard = () => {
 
     return (
         <div>
+            <ConfirmationModal
+                cancelOrder={cancelOrder}
+                setCancelOrder={setCancelOrder}
+            ></ConfirmationModal>
+
             <h1 className='text-3xl md:text-4xl text-primary text-center font-semibold'>Dashboard</h1>
 
             <div class="drawer drawer-mobile">

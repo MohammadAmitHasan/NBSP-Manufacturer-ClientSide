@@ -1,25 +1,10 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import axiosPrivate from '../../API/axiosPrivate';
-import auth from '../../firebase.init';
-import useError from '../../Hooks/useError';
+import useMyOrder from '../../Hooks/useMyOrder';
 import Loading from '../Shared/Loading';
 
-const MyOrders = () => {
-    const [user] = useAuthState(auth);
-
-    const handleError = useError();
-
-    const { data: orders, isLoading } = useQuery('myOrder', async () => {
-        try {
-            return await axiosPrivate.get(`http://localhost:5000/myOrders?client=${user.email}`)
-        }
-        catch (error) {
-            handleError(error);
-        }
-    })
+const MyOrders = ({ setCancelOrder }) => {
+    const { orders, isLoading } = useMyOrder();
 
     if (isLoading) {
         return <Loading></Loading>
@@ -43,8 +28,6 @@ const MyOrders = () => {
                             </tr>
                         </thead>
                         <tbody>
-
-
                             {
                                 orders?.data.map((order, index) => <tr key={order._id}>
                                     <th>{index + 1}</th>
@@ -52,22 +35,28 @@ const MyOrders = () => {
                                     <td>{order.quantity}</td>
                                     <td>{order.totalPrice}</td>
                                     <td>
-                                        {(!order.paid) && <Link className='btn btn-xs btn-secondary text-white' to={`/dashboard/payment/${order._id}`}>Pay Now</Link>}
+                                        {
+                                            (!order.paid) &&
+                                            <>
+                                                <Link className='btn btn-xs btn-secondary text-white' to={`/dashboard/payment/${order._id}`}>Pay Now</Link>
+                                                <label onClick={() => setCancelOrder(order._id)} for="delete-confirmation" class="btn btn-xs btn-error ml-2">Cancel Order</label>
+                                            </>
+                                        }
+
                                         {(order.paid) && <div className='font-semibold'>
                                             <p><span className='text-green-600'>Paid</span></p>
                                             <p>Transaction id: <span className='text-orange-500'>{order.transactionId}</span></p>
                                         </div>}
                                     </td>
-                                    <td>{order?.status}</td>
+                                    <td><p className='text-blue-700 font-bold'>{order?.status}</p></td>
                                 </tr>)
                             }
-
-
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+
+        </div >
     );
 };
 

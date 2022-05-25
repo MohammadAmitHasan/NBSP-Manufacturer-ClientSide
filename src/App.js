@@ -13,8 +13,10 @@ import MyOrders from './Pages/Dashboard/MyOrders';
 import AddReview from './Pages/Dashboard/AddReview';
 import Payment from './Pages/Dashboard/payment';
 import MyProfile from './Pages/Dashboard/MyProfile';
+import { useState } from 'react';
 
 function App() {
+  const [cancelOrder, setCancelOrder] = useState(null);
   return (
     <div>
       <Navbar></Navbar>
@@ -31,9 +33,12 @@ function App() {
             </RequireAuth>}
           ></Route>
 
-          <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
+          <Route path='/dashboard' element={<RequireAuth><Dashboard
+            cancelOrder={cancelOrder}
+            setCancelOrder={setCancelOrder}
+          ></Dashboard></RequireAuth>}>
             <Route index element={<MyProfile></MyProfile>}></Route>
-            <Route path='myOrders' element={<MyOrders></MyOrders>}></Route>
+            <Route path='myOrders' element={<MyOrders setCancelOrder={setCancelOrder}></MyOrders>}></Route>
             <Route path='addReview' element={<AddReview></AddReview>}></Route>
             <Route path="payment/:id" element={<Payment></Payment>}></Route>
           </Route>
