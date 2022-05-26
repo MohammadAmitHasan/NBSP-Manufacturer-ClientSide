@@ -1,4 +1,6 @@
+import { ArrowNarrowRightIcon } from '@heroicons/react/solid';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useParts from '../../Hooks/useParts';
 import LineStyle from '../Shared/LineStyle';
 import Part from '../Shared/Part';
@@ -18,6 +20,12 @@ const Parts = () => {
                     ></Part>)
                 }
             </div>
+            <div className='text-right mt-8'>
+                <Link className='btn btn-primary' to='/allParts'>Show All
+                    <ArrowNarrowRightIcon className='w-5 h-5 ml-1'></ArrowNarrowRightIcon>
+                </Link>
+            </div>
+
         </div>
     );
 };

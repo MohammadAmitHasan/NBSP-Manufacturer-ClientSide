@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axiosPrivate from '../../API/axiosPrivate';
 import auth from '../../firebase.init';
-import handleError from '../../Hooks/useError'
+import useError from '../../Hooks/useError';
 import Loading from '../Shared/Loading';
 
 const ProfileUpdate = () => {
+    const handleError = useError();
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
     const { data, isLoading } = useQuery('userData', async () => {

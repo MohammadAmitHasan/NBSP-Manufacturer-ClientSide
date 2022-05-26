@@ -36,7 +36,7 @@ const Dashboard = ({ cancelOrder, setCancelOrder }) => {
                 </div>
                 <div class="drawer-side">
                     <label for="dashboard-menu" class="drawer-overlay"></label>
-                    <ul class="pl-5 p-4 overflow-y-auto w-52 border-r-2 text-base-content bg-base-100">
+                    <ul class="p-4 overflow-y-auto w-60 border-r-2 text-base-content bg-base-100">
                         {/* <!-- Sidebar content here --> */}
                         <li><CustomLink to={'/dashboard'}>My Profile</CustomLink></li>
                         {

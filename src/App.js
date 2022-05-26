@@ -16,6 +16,8 @@ import MyProfile from './Pages/Dashboard/MyProfile';
 import { useState } from 'react';
 import AllParts from './Pages/AllParts';
 import ProfileUpdate from './Pages/Dashboard/ProfileUpdate';
+import RequireAdmin from './Pages/Shared/RequireAdmin'
+import MakeAdmin from './Pages/Dashboard/MakeAdmin';
 
 function App() {
   const [cancelOrder, setCancelOrder] = useState(null);
@@ -40,17 +42,25 @@ function App() {
             cancelOrder={cancelOrder}
             setCancelOrder={setCancelOrder}
           ></Dashboard></RequireAuth>}>
+
             <Route index element={<MyProfile></MyProfile>}></Route>
             <Route path='profileUpdate' element={<ProfileUpdate></ProfileUpdate>}></Route>
             <Route path='myOrders' element={<MyOrders setCancelOrder={setCancelOrder}></MyOrders>}></Route>
             <Route path='addReview' element={<AddReview></AddReview>}></Route>
             <Route path="payment/:id" element={<Payment></Payment>}></Route>
+
+            <Route path='makeAdmin' element={
+              <RequireAdmin>
+                <MakeAdmin></MakeAdmin>
+              </RequireAdmin>
+            }></Route>
+
           </Route>
 
         </Routes>
       </div>
       <ToastContainer />
-    </div>
+    </div >
   );
 }
 
