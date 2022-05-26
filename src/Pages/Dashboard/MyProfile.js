@@ -23,8 +23,6 @@ const MyProfile = () => {
         return <Loading></Loading>
     }
 
-    const { education, address, phone, linkedin } = data.data;
-
     return (
         <div className='container mx-auto'>
             <div className='max-w-lg'>
@@ -48,11 +46,11 @@ const MyProfile = () => {
                     </div>
 
                     <div className='mt-8 grid grid-cols-1 gap-2'>
-                        <p><span className='font-semibold'>Education: </span>{education}</p>
-                        <p><span className='font-semibold'>Location: </span>{address}</p>
-                        <p><span className='font-semibold'>Phone Number: </span>{phone}</p>
+                        <p><span className='font-semibold'>Education: </span>{data?.data.education}</p>
+                        <p><span className='font-semibold'>Location: </span>{data?.data.address}</p>
+                        <p><span className='font-semibold'>Phone Number: </span>{data?.data.phone}</p>
                         <p><span className='font-semibold'>Linkedin: </span>
-                            <a target={'_blank'} rel="noreferrer" href={linkedin} className=' text-blue-600'>{linkedin}</a>
+                            <a target={'_blank'} rel="noreferrer" href={data?.data.linkedin} className=' text-blue-600'>{data?.data.linkedin}</a>
                         </p>
 
 

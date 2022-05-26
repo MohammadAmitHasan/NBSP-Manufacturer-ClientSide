@@ -18,6 +18,9 @@ import AllParts from './Pages/AllParts';
 import ProfileUpdate from './Pages/Dashboard/ProfileUpdate';
 import RequireAdmin from './Pages/Shared/RequireAdmin'
 import MakeAdmin from './Pages/Dashboard/MakeAdmin';
+import AddProduct from './Pages/Dashboard/AddProduct';
+import PageNotFound from './Pages/PageNotFound/PageNotFound';
+import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
 
 function App() {
   const [cancelOrder, setCancelOrder] = useState(null);
@@ -54,8 +57,21 @@ function App() {
                 <MakeAdmin></MakeAdmin>
               </RequireAdmin>
             }></Route>
+            <Route path='addProduct' element={
+              <RequireAdmin>
+                <AddProduct></AddProduct>
+              </RequireAdmin>
+            }></Route>
+
+            <Route path='manageOrders' element={
+              <RequireAdmin>
+                <ManageAllOrders setCancelOrder={setCancelOrder}></ManageAllOrders>
+              </RequireAdmin>
+            }></Route>
 
           </Route>
+
+          <Route path='*' element={<PageNotFound></PageNotFound>}></Route>
 
         </Routes>
       </div>

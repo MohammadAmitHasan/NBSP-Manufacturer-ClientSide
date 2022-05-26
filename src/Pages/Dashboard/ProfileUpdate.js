@@ -25,7 +25,7 @@ const ProfileUpdate = () => {
         return <Loading></Loading>
     }
 
-    const { education, address, phone, linkedin } = data.data;
+    const { education, address, phone, linkedin } = data?.data;
 
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -48,7 +48,6 @@ const ProfileUpdate = () => {
         catch (error) {
             handleError(error);
         }
-
     }
     return (
         <div className='container mx-auto'>

@@ -5,7 +5,8 @@ import auth from '../../firebase.init';
 import useAdmin from '../../Hooks/useAdmin';
 import CustomLink from '../Shared/CustomLink';
 import Loading from '../Shared/Loading';
-import ConfirmationModal from './CancelOrderModal'
+import CancelOrderModal from '../Dashboard/CancelOrderModal'
+import CancelOrderModalAdmin from './CancelOrderModalAdmin';
 
 const Dashboard = ({ cancelOrder, setCancelOrder }) => {
     const [user, loading] = useAuthState(auth);
@@ -17,10 +18,17 @@ const Dashboard = ({ cancelOrder, setCancelOrder }) => {
 
     return (
         <div>
-            <ConfirmationModal
+            <CancelOrderModal
                 cancelOrder={cancelOrder}
                 setCancelOrder={setCancelOrder}
-            ></ConfirmationModal>
+            ></CancelOrderModal>
+            {
+                admin && <CancelOrderModalAdmin
+                    setCancelOrder={setCancelOrder}
+                    cancelOrder={cancelOrder}
+                ></CancelOrderModalAdmin>
+            }
+
 
             <h1 className='text-3xl md:text-4xl text-primary text-center font-semibold'>Dashboard</h1>
 
