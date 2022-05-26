@@ -6,7 +6,7 @@ const useAllOrders = () => {
     const handleError = useError();
     const { data: orders, isLoading, refetch } = useQuery('allOrders', async () => {
         try {
-            return await axiosPrivate.get(`http://localhost:5000/allOrders`)
+            return await axiosPrivate.get(`https://nasah-bicycle.herokuapp.com/allOrders`)
         }
         catch (error) {
             handleError(error);

@@ -32,8 +32,8 @@ const Payment = () => {
         <div>
             <h2 className='text-3xl md:text-4xl text-center text-secondary font-semibold my-5'>Payment</h2>
 
-            <div class="card max-w-xl bg-base-100 shadow-xl my-5 mx-auto">
-                <div class="card-body">
+            <div className="card max-w-xl bg-base-100 shadow-xl my-5 mx-auto">
+                <div className="card-body">
                     <h3 className='text-2xl text-secondary font-semibold'>Hello, {booking.data.name}</h3>
                     <h2 className='text-3xl'>Please, Pay for The <span className='text-orange-700'>{booking.data.productName} Booking</span></h2>
                     <p className='text-lg'>Quantity: <span className='text-orange-700'>{booking.data.quantity} pieces</span></p>
@@ -41,7 +41,7 @@ const Payment = () => {
                         <span className='text-orange-700'> ${booking.data.totalPrice}</span></p>
                 </div>
             </div>
-            <div class="card max-w-xl bg-base-100 shadow-xl mx-auto">
+            <div className="card max-w-xl bg-base-100 shadow-xl mx-auto">
                 <div className="card-body">
                     <Elements stripe={stripePromise}>
                         <CheckoutForm booking={booking.data} />

@@ -9,8 +9,8 @@ const Review = ({ review }) => {
             <p className='leading-7 text-gray-700 mb-2'>{comment}</p>
             <div>
                 Ratting: {
-                    [...Array(ratting)].map(e =>
-                        <span >
+                    [...Array(ratting)].map((e, index) =>
+                        <span key={index}>
                             <StarIcon className='w-5 h-5 inline text-orange-500'></StarIcon>
                         </span>
                     )

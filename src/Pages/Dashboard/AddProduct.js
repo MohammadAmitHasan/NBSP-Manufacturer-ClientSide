@@ -9,7 +9,7 @@ const AddProduct = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            await axiosPrivate.post(`http://localhost:5000/parts`, {
+            await axiosPrivate.post(`https://nasah-bicycle.herokuapp.com/parts`, {
                 name: e.target.name.value,
                 price: e.target.price.value,
                 minimumOrder: e.target.minimumOrder.value,
@@ -33,12 +33,12 @@ const AddProduct = () => {
             <h3 className='text-2xl md:text-3xl text-secondary font-semibold my-5'>Add a New Product</h3>
             <div>
                 <form onSubmit={handleUpdate} className='max-w-xs grid grid-cols-1 gap-3 p-5 shadow-xl rounded-xl'>
-                    <input required name='name' type="text" placeholder="Product Name" class="input input-bordered w-full " />
-                    <input required name='price' type="number" placeholder="Per Unit Price" class="input input-bordered w-full " />
-                    <input required name='minimumOrder' type="number" placeholder="MinimumOrder Quantity" class="input input-bordered w-full " />
-                    <input required name='availableQuantity' type="number" placeholder="Available Quantity" class="input input-bordered w-full " />
-                    <textarea required name='description' type="text" placeholder="Product Description" class="textarea textarea-bordered w-full " />
-                    <input required name='img' type="text" placeholder="Img URL" class="input input-bordered w-full " />
+                    <input required name='name' type="text" placeholder="Product Name" className="input input-bordered w-full " />
+                    <input required name='price' type="number" placeholder="Per Unit Price" className="input input-bordered w-full " />
+                    <input required name='minimumOrder' type="number" placeholder="MinimumOrder Quantity" className="input input-bordered w-full " />
+                    <input required name='availableQuantity' type="number" placeholder="Available Quantity" className="input input-bordered w-full " />
+                    <textarea required name='description' type="text" placeholder="Product Description" className="textarea textarea-bordered w-full " />
+                    <input required name='img' type="text" placeholder="Img URL" className="input input-bordered w-full " />
                     <input type="submit" className='btn btn-md' />
                 </form>
             </div>

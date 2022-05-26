@@ -31,12 +31,12 @@ const AddReview = () => {
 
                 <div>
                     <p className='my-2'>Provide a Ratting</p>
-                    <div class="rating">
-                        <input onClick={() => setRatting(1)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked={ratting === 1 ? true : false} />
-                        <input onClick={() => setRatting(2)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked={ratting === 2 ? true : false} />
-                        <input onClick={() => setRatting(3)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked={ratting === 3 ? true : false} />
-                        <input onClick={() => setRatting(4)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked={ratting === 4 ? true : false} />
-                        <input onClick={() => setRatting(5)} type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked={ratting === 5 ? true : false} />
+                    <div className="rating">
+                        <input onClick={() => setRatting(1)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={ratting === 1 ? true : false} />
+                        <input onClick={() => setRatting(2)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={ratting === 2 ? true : false} />
+                        <input onClick={() => setRatting(3)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={ratting === 3 ? true : false} />
+                        <input onClick={() => setRatting(4)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={ratting === 4 ? true : false} />
+                        <input onClick={() => setRatting(5)} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked={ratting === 5 ? true : false} />
                     </div>
                     <br />
                     <button type='submit' className='btn btn-sm mt-2'>Submit</button>

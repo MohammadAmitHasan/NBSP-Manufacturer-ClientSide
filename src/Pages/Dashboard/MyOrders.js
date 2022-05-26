@@ -14,8 +14,8 @@ const MyOrders = ({ setCancelOrder }) => {
         <div>
             <h3 className='text-2xl md:text-3xl text-secondary font-semibold my-5'>My Orders</h3>
             <div>
-                <div class="overflow-x-auto">
-                    <table class="table w-full">
+                <div className="overflow-x-auto">
+                    <table className="table w-full">
 
                         <thead>
                             <tr>
@@ -39,7 +39,7 @@ const MyOrders = ({ setCancelOrder }) => {
                                             (!order.paid) &&
                                             <>
                                                 <Link className='btn btn-xs btn-secondary text-white' to={`/dashboard/payment/${order._id}`}>Pay Now</Link>
-                                                <label onClick={() => setCancelOrder(order._id)} for="delete-confirmation" class="btn btn-xs btn-error ml-2">Cancel Order</label>
+                                                <label onClick={() => setCancelOrder(order._id)} for="delete-confirmation" className="btn btn-xs btn-error ml-2">Cancel Order</label>
                                             </>
                                         }
 

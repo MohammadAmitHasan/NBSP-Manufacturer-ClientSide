@@ -3,10 +3,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useParts from '../../Hooks/useParts';
 import LineStyle from '../Shared/LineStyle';
+import Loading from '../Shared/Loading';
 import Part from '../Shared/Part';
 
 const Parts = () => {
-    const partsData = useParts(6);
+    const { parts, isLoading } = useParts(6);
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
 
     return (
         <div className='my-20 container mx-auto p-3'>
@@ -14,7 +19,7 @@ const Parts = () => {
             <LineStyle></LineStyle>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 gap-8'>
                 {
-                    partsData.map(part => <Part
+                    parts.map(part => <Part
                         key={part._id}
                         part={part}
                     ></Part>)

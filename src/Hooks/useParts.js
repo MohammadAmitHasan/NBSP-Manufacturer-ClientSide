@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 
 const useParts = (size) => {
-    const [parts, setParts] = useState([]);
-    useEffect(() => {
-        fetch(`http://localhost:5000/parts?size=${size}`)
-            .then(res => res.json())
-            .then(data => setParts(data))
-    }, [size])
-    return parts
+
+    const { data: parts, isLoading, refetch } = useQuery('parts', () =>
+        fetch(`https://nasah-bicycle.herokuapp.com/parts?size=${size}`)
+            .then(res => res.json()))
+
+    return { parts, isLoading, refetch }
 }
 export default useParts;

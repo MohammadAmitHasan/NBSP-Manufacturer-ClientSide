@@ -14,7 +14,7 @@ const ProfileUpdate = () => {
     const [user] = useAuthState(auth);
     const { data, isLoading } = useQuery('userData', async () => {
         try {
-            return await axiosPrivate.get(`http://localhost:5000/user/${user.email}`)
+            return await axiosPrivate.get(`https://nasah-bicycle.herokuapp.com/user/${user.email}`)
         }
         catch (error) {
             handleError(error);
@@ -36,7 +36,7 @@ const ProfileUpdate = () => {
             address: e.target.address.value || address,
         }
         try {
-            await axiosPrivate.put(`http://localhost:5000/user/${user.email}`, userData)
+            await axiosPrivate.put(`https://nasah-bicycle.herokuapp.com/user/${user.email}`, userData)
                 .then(data => {
                     if (data?.data?.result?.modifiedCount > 0) {
                         toast.success('Profile update successful')
@@ -54,10 +54,10 @@ const ProfileUpdate = () => {
             <h3 className='text-2xl md:text-3xl text-secondary font-semibold my-5'>Update Profile</h3>
             <div>
                 <form onSubmit={handleUpdate} className='max-w-xs grid grid-cols-1 gap-3 p-5 shadow-xl rounded-xl'>
-                    <input name='education' type="text" placeholder="Education" class="input input-bordered w-full " />
-                    <input name='phone' type="text" placeholder="Phone Number" class="input input-bordered w-full " />
-                    <input name='linkedin' type="text" placeholder="Linkedin" class="input input-bordered w-full " />
-                    <textarea name='address' type="text" placeholder="Location" class="textarea textarea-bordered w-full " />
+                    <input name='education' type="text" placeholder="Education" className="input input-bordered w-full " />
+                    <input name='phone' type="text" placeholder="Phone Number" className="input input-bordered w-full " />
+                    <input name='linkedin' type="text" placeholder="Linkedin" className="input input-bordered w-full " />
+                    <textarea name='address' type="text" placeholder="Location" className="textarea textarea-bordered w-full " />
                     <input type="submit" className='btn btn-md' />
                 </form>
             </div>

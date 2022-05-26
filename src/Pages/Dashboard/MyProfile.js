@@ -12,7 +12,7 @@ const MyProfile = () => {
     const [user] = useAuthState(auth);
     const { data, isLoading } = useQuery('userData', async () => {
         try {
-            return await axiosPrivate.get(`http://localhost:5000/user/${user.email}`)
+            return await axiosPrivate.get(`https://nasah-bicycle.herokuapp.com/user/${user.email}`)
         }
         catch (error) {
             handleError(error);

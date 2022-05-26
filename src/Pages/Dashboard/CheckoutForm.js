@@ -9,7 +9,6 @@ const CheckoutForm = ({ booking }) => {
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
     const [transactionId, setTransactionId] = useState('');
-    const [processing, setProcessing] = useState(false);
 
     // Stripe backend response
     const [clientSecret, setClientSecret] = useState("");
@@ -75,7 +74,6 @@ const CheckoutForm = ({ booking }) => {
             }
             axiosPrivate.patch(`https://nasah-bicycle.herokuapp.com/booking/${_id}`, payment)
                 .then(data => {
-                    setProcessing(false);
                     console.log(data);
                 })
 

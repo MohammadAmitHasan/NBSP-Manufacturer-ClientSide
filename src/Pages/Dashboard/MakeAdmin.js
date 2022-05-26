@@ -10,7 +10,7 @@ const MakeAdmin = () => {
     const handleError = useError();
     const { data, isLoading, refetch } = useQuery('allUser', async () => {
         try {
-            return await axiosPrivate.get(`http://localhost:5000/allUsers`)
+            return await axiosPrivate.get(`https://nasah-bicycle.herokuapp.com/allUsers`)
         }
         catch (error) {
             handleError(error);
@@ -23,7 +23,7 @@ const MakeAdmin = () => {
 
     const makeAdmin = async (email) => {
         try {
-            await axiosPrivate.put(`http://localhost:5000/user/admin/${email}`)
+            await axiosPrivate.put(`https://nasah-bicycle.herokuapp.com/user/admin/${email}`)
                 .then(data => {
                     if (data?.data?.modifiedCount > 0) {
                         toast.success('Successfully made an admin')

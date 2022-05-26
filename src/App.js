@@ -21,9 +21,13 @@ import MakeAdmin from './Pages/Dashboard/MakeAdmin';
 import AddProduct from './Pages/Dashboard/AddProduct';
 import PageNotFound from './Pages/PageNotFound/PageNotFound';
 import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
+import ManageProduct from './Pages/Dashboard/ManageProduct';
+import Footer from './Pages/Shared/Footer';
+import Portfolio from './Pages/Portfolio/Portfolio';
 
 function App() {
   const [cancelOrder, setCancelOrder] = useState(null);
+  const [deleteProduct, setDeleteProduct] = useState(null);
   return (
     <div>
       <Navbar></Navbar>
@@ -44,6 +48,9 @@ function App() {
           <Route path='/dashboard' element={<RequireAuth><Dashboard
             cancelOrder={cancelOrder}
             setCancelOrder={setCancelOrder}
+
+            deleteProduct={deleteProduct}
+            setDeleteProduct={setDeleteProduct}
           ></Dashboard></RequireAuth>}>
 
             <Route index element={<MyProfile></MyProfile>}></Route>
@@ -69,11 +76,21 @@ function App() {
               </RequireAdmin>
             }></Route>
 
+            <Route path='manageProducts' element={
+              <RequireAdmin>
+                <ManageProduct
+                  setDeleteProduct={setDeleteProduct}
+                ></ManageProduct>
+              </RequireAdmin>
+            }></Route>
           </Route>
-
+          <Route path='/portfolio' element={<Portfolio></Portfolio>}></Route>
           <Route path='*' element={<PageNotFound></PageNotFound>}></Route>
 
         </Routes>
+
+        <Footer></Footer>
+
       </div>
       <ToastContainer />
     </div >
