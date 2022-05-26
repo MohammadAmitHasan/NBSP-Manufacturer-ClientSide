@@ -15,7 +15,7 @@ const Purchase = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
     const { data: part, isLoading } = useQuery(['part', id], () =>
-        fetch(`http://localhost:5000/parts/${id}`)
+        fetch(`https://nasah-bicycle.herokuapp.com/parts/${id}`)
             .then(res => res.json())
     )
 
@@ -36,7 +36,7 @@ const Purchase = () => {
             productId: part._id,
         }
 
-        axiosPrivate.post('http://localhost:5000/booking', booking)
+        axiosPrivate.post('https://nasah-bicycle.herokuapp.com/booking', booking)
             .then(res => {
                 if (res.data?.result?.insertedId) {
                     toast.success('Product Booking Successful');

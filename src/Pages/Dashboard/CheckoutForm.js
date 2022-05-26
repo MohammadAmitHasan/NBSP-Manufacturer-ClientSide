@@ -16,7 +16,7 @@ const CheckoutForm = ({ booking }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        axiosPrivate.post('http://localhost:5000/create-payment-intent', { totalPrice })
+        axiosPrivate.post('https://nasah-bicycle.herokuapp.com/create-payment-intent', { totalPrice })
             .then((data) => {
                 if (data?.data?.clientSecret) {
                     setClientSecret(data.data.clientSecret)
@@ -73,7 +73,7 @@ const CheckoutForm = ({ booking }) => {
                 transactionId: paymentIntent.id,
                 totalPrice
             }
-            axiosPrivate.patch(`http://localhost:5000/booking/${_id}`, payment)
+            axiosPrivate.patch(`https://nasah-bicycle.herokuapp.com/booking/${_id}`, payment)
                 .then(data => {
                     setProcessing(false);
                     console.log(data);

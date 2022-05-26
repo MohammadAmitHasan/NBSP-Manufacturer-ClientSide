@@ -17,7 +17,7 @@ const Payment = () => {
 
     const { data: booking, isLoading } = useQuery(['bookingData', id], async () => {
         try {
-            return await axiosPrivate.get(`http://localhost:5000/booking/${id}`)
+            return await axiosPrivate.get(`https://nasah-bicycle.herokuapp.com/booking/${id}`)
         }
         catch (error) {
             handleError(error)

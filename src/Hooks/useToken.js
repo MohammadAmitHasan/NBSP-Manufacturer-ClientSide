@@ -6,7 +6,7 @@ const useToken = user => {
     const [token, setToken] = useState('');
     useEffect(() => {
         if (email) {
-            axios.put(`http://localhost:5000/user/${email}`,
+            axios.put(`https://nasah-bicycle.herokuapp.com/user/${email}`,
                 {
                     email
                 })

@@ -1,8 +1,9 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useAdmin from '../../Hooks/useAdmin';
+import CustomLink from '../Shared/CustomLink';
 import Loading from '../Shared/Loading';
 import ConfirmationModal from './CancelOrderModal'
 
@@ -35,21 +36,21 @@ const Dashboard = ({ cancelOrder, setCancelOrder }) => {
                 </div>
                 <div class="drawer-side">
                     <label for="dashboard-menu" class="drawer-overlay"></label>
-                    <ul class="menu p-4 overflow-y-auto w-52 border-r-2 text-base-content bg-base-100">
+                    <ul class="pl-5 p-4 overflow-y-auto w-52 border-r-2 text-base-content bg-base-100">
                         {/* <!-- Sidebar content here --> */}
-                        <li><Link to={'/dashboard'}>My Profile</Link></li>
+                        <li><CustomLink to={'/dashboard'}>My Profile</CustomLink></li>
                         {
                             admin ?
                                 <>
-                                    <li><Link to={'/dashboard/manageOrders'}>Manage All Orders</Link></li>
-                                    <li><Link to={'/dashboard/addProduct'}>Add A Product</Link></li>
-                                    <li><Link to={'/dashboard/makeAdmin'}>Make Admin</Link></li>
-                                    <li><Link to={'/dashboard/manageProducts'}>Manage Products</Link></li>
+                                    <li><CustomLink to={'/dashboard/manageOrders'}>Manage All Orders</CustomLink></li>
+                                    <li><CustomLink to={'/dashboard/addProduct'}>Add A Product</CustomLink></li>
+                                    <li><CustomLink to={'/dashboard/makeAdmin'}>Make Admin</CustomLink></li>
+                                    <li><CustomLink to={'/dashboard/manageProducts'}>Manage Products</CustomLink></li>
                                 </>
                                 :
                                 <>
-                                    <li><Link to={'/dashboard/myOrders'}>My Orders</Link></li>
-                                    <li><Link to={'/dashboard/addReview'}>Add A Review</Link></li>
+                                    <li><CustomLink to={'/dashboard/myOrders'}>My Orders</CustomLink></li>
+                                    <li><CustomLink to={'/dashboard/addReview'}>Add A Review</CustomLink></li>
                                 </>
                         }
                     </ul>

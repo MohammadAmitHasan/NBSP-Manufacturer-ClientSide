@@ -10,7 +10,7 @@ const AddReview = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await axiosPrivate.post('http://localhost:5000/reviews', {
+        await axiosPrivate.post('https://nasah-bicycle.herokuapp.com/reviews', {
             comment: e.target.comment.value,
             ratting,
             name: user.displayName,

@@ -9,7 +9,7 @@ const useMyOrder = () => {
     const [user] = useAuthState(auth);
     const { data: orders, isLoading, refetch } = useQuery('myOrder', async () => {
         try {
-            return await axiosPrivate.get(`http://localhost:5000/myOrders?client=${user.email}`)
+            return await axiosPrivate.get(`https://nasah-bicycle.herokuapp.com/myOrders?client=${user.email}`)
         }
         catch (error) {
             handleError(error);

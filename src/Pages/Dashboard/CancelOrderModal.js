@@ -10,7 +10,7 @@ const ConfirmationModal = ({ cancelOrder, setCancelOrder }) => {
     const { refetch } = useMyOrder();
     const handleCancel = async () => {
         console.log(cancelOrder)
-        await axiosPrivate.delete(`http://localhost:5000/booking/${cancelOrder}?client=${user.email}`)
+        await axiosPrivate.delete(`https://nasah-bicycle.herokuapp.com/booking/${cancelOrder}?client=${user.email}`)
             .then(data => {
                 console.log(data.data)
                 if (data?.data?.deletedCount > 0) {
