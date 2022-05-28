@@ -23,7 +23,6 @@ import PageNotFound from './Pages/PageNotFound/PageNotFound';
 import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
 import ManageProduct from './Pages/Dashboard/ManageProduct';
 import Footer from './Pages/Shared/Footer';
-import Portfolio from './Pages/Portfolio/Portfolio';
 
 function App() {
   const [cancelOrder, setCancelOrder] = useState(null);
@@ -84,7 +83,7 @@ function App() {
               </RequireAdmin>
             }></Route>
           </Route>
-          <Route path='/portfolio' element={<Portfolio></Portfolio>}></Route>
+          
           <Route path='*' element={<PageNotFound></PageNotFound>}></Route>
 
         </Routes>
